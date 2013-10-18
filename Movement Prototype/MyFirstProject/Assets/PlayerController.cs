@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 			thing.transform.Translate(x, 0, y, Space.World); //move Player
 		}
 		
-		Camera.mainCamera.transform.Translate(x, y, 0, Space.Self); //move main camera
+		Camera.mainCamera.transform.Translate(x, 0, y, Space.World); //move main camera
 		
 		//Rotate Player to face where your mouse pointer is
 		Plane playerPlane = new Plane(Vector3.up, transform.position);
