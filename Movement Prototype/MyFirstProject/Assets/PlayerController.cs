@@ -16,13 +16,11 @@ public class PlayerController : MonoBehaviour
     	float x = Input.GetAxis("Horizontal") * Time.smoothDeltaTime * speed;
     	float y = Input.GetAxis("Vertical") * Time.smoothDeltaTime * speed;
 
-  		foreach(var thing in GameObject.FindGameObjectsWithTag("Player"))
-		{
-			thing.transform.Translate(x, 0, y, Space.World); //move Player
-		}
+		transform.Translate(x, 0, y, Space.World); //move Player
 		
-		Camera.mainCamera.transform.Translate(x, 0, y, Space.World); //move main camera
-		
+		//move main camera
+		Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + 9.5f, transform.position.z - 2.5f);
+
 		//Rotate Player to face where your mouse pointer is
 		Plane playerPlane = new Plane(Vector3.up, transform.position);
     	Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
