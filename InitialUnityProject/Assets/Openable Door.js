@@ -14,17 +14,17 @@ openRot = new Vector3 (defaultRot.x, defaultRot.y + DoorOpenAngle, defaultRot.z)
 
 //Main function
 function Update (){
-if(open){
-//Open door
-transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, openRot, Time.deltaTime * smooth);
-}else{
-//Close door
-transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, defaultRot, Time.deltaTime * smooth);
-}
+	if(open){
+		//Open door
+		transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, openRot, Time.deltaTime * smooth);
+	}else{
+		//Close door
+		transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, defaultRot, Time.deltaTime * smooth);
+	}
 
-if(Input.GetKeyDown("f") && enter){
-open = !open;
-}
+	if(Input.GetKeyDown("f") && enter){
+	open = !open;
+	}
 }
 
 function OnGUI(){
