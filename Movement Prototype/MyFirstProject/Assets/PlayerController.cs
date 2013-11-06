@@ -20,7 +20,10 @@ public class PlayerController : MonoBehaviour
 		
 		//move main camera
 		Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + 9.5f, transform.position.z - 2.5f);
-
+		
+		//move light volume
+		GameObject.FindGameObjectWithTag("Light volume").transform.position = transform.position;
+		
 		//Rotate Player to face where your mouse pointer is
 		Plane playerPlane = new Plane(Vector3.up, transform.position);
     	Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -31,6 +34,9 @@ public class PlayerController : MonoBehaviour
  	    	var targetPoint = ray.GetPoint(hitdist);
         	var targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
         	transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.smoothDeltaTime * 2);
+			
+			//rotate light volume
+			GameObject.FindGameObjectWithTag("Light volume").transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.smoothDeltaTime * 2);
     	}
 	}
 }

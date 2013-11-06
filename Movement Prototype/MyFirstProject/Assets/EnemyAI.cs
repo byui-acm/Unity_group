@@ -10,32 +10,40 @@ public class EnemyAI : MonoBehaviour
 	private float moveSpeed = 2;
 	private float damping = 6;
 	private bool isItAttacking = false;
+	public bool isObserved = false;
 	
 	// Update is called once per frame
 	void Update ()
 	{
 		distance = Vector3.Distance(target.position, transform.position);
 		
-		if (distance < lookAtDistance)
+		if (isObserved)
 		{
-			isItAttacking = false;
-			renderer.material.color = Color.yellow;
-			lookAt();
+			renderer.material.color = Color.magenta;
 		}
-		
-		if (distance > lookAtDistance)
+		else
 		{
-			renderer.material.color = Color.green;	
-		}
-		
-		if (distance < attackDistance)
-		{
-			attack();	
-		}
-		
-		if (isItAttacking)
-		{
-			renderer.material.color = Color.red;	
+			if (distance < lookAtDistance)
+			{
+				isItAttacking = false;
+				renderer.material.color = Color.yellow;
+				lookAt();
+			}
+			
+			if (distance > lookAtDistance)
+			{
+				renderer.material.color = Color.green;	
+			}
+			
+			if (distance < attackDistance)
+			{
+				attack();	
+			}
+			
+			if (isItAttacking)
+			{
+				renderer.material.color = Color.red;	
+			}
 		}
 	}
 	
@@ -58,6 +66,34 @@ public class EnemyAI : MonoBehaviour
 		if (collision.gameObject.tag == "Player")
 		{
 			target.renderer.material.color = Color.red; //represents death
+			isObserved = true;
+		}
+	}
+	
+	//This function is only here for debugging
+	public void OnCollisionExit(Collision collision)
+	{
+		if (collision.gameObject.tag == "Player")
+		{
+			target.renderer.material.color = Color.blue;
+			isObserved = false;
+		}
+	}
+	
+	public void OnTriggerStay(Collider collider)
+	{
+		Debug.Log(collider.gameObject);
+		if (collider.gameObject.tag == "Light volume")
+		{
+			isObserved = true;
+		}
+	}
+	
+	public void OnTriggerExit(Collider collider)
+	{
+		if (collider.gameObject.tag == "Light volume")
+		{
+			isObserved = false;
 		}
 	}
 }
