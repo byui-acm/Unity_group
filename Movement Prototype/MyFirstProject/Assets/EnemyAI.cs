@@ -52,4 +52,12 @@ public class EnemyAI : MonoBehaviour
 		
 		transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
 	}
+	
+	public void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.tag == "Player")
+		{
+			target.renderer.material.color = Color.red; //represents death
+		}
+	}
 }
