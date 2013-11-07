@@ -5,12 +5,12 @@ public class EnemyAI : MonoBehaviour
 {
 	private float distance;
 	public Transform target;
-	private float lookAtDistance = 15;
-	private float attackDistance = 10;
-	private float moveSpeed = 2;
+	public float lookAtDistance = 15;
+	public float attackDistance = 10;
+	public float moveSpeed = 2;
 	private float damping = 6;
 	private bool isItAttacking = false;
-	public bool isObserved = false;
+	private bool isObserved = false;
 	
 	// Update is called once per frame
 	void Update ()
