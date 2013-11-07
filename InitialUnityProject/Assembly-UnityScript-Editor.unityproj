@@ -70,6 +70,18 @@
      <None Include="Assets\RAIN\Editor\ScriptTemplates\BehaviorTreeTemplate.xml" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
      <None Include="Assets\AI\Resources\BehaviorTrees\Behavior1.xml" />
+ <Reference Include="RAINIndie">
+ <HintPath>Assets\RAIN\RAINIndie.dll</HintPath>
+ </Reference>
+ <Reference Include="Recast">
+ <HintPath>Assets\RAIN\Recast.dll</HintPath>
+ </Reference>
+ <Reference Include="RAINEditor">
+ <HintPath>Assets\RAIN\Editor\RAINEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="RecastEditor">
+ <HintPath>Assets\RAIN\Editor\RecastEditor.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:\Program Files (x86)\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>
@@ -87,18 +99,6 @@
  </Reference>
  <Reference Include="UnityEditor.Android.Extensions">
  <HintPath>C:\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\EditorExtensions\UnityEditor.Android.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="RAINIndie">
- <HintPath>Assets\RAIN\RAINIndie.dll</HintPath>
- </Reference>
- <Reference Include="RAINEditor">
- <HintPath>Assets\RAIN\Editor\RAINEditor.dll</HintPath>
- </Reference>
- <Reference Include="Recast">
- <HintPath>Assets\RAIN\Recast.dll</HintPath>
- </Reference>
- <Reference Include="RecastEditor">
- <HintPath>Assets\RAIN\Editor\RecastEditor.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
