@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 		transform.Translate(x, 0, y, Space.World); //move Player
 		
 		//move main camera
-		Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + 9.5f, transform.position.z - 2.5f);
+		Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + 12.5f, transform.position.z - 2.5f);
 		
 		//move light volume
 		GameObject.FindGameObjectWithTag("Light volume").transform.position = transform.position;

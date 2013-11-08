@@ -6,7 +6,7 @@ public class EnemyAI : MonoBehaviour
 	private float distance;
 	public Transform target;
 	public float lookAtDistance = 15;
-	public float attackDistance = 10;
+	public float attackDistance = 12;
 	public float moveSpeed = 2;
 	private float damping = 6;
 	private bool isItAttacking = false;
@@ -82,8 +82,7 @@ public class EnemyAI : MonoBehaviour
 	
 	public void OnTriggerStay(Collider collider)
 	{
-		Debug.Log(collider.gameObject);
-		if (collider.gameObject.tag == "Light volume")
+		if (collider.gameObject.tag == "Light volume" || collider.gameObject.tag == "Win Light")
 		{
 			isObserved = true;
 		}
