@@ -18,27 +18,27 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		// Moves player left, right, up, down. No collision.
+		// Moves player left and right.
     	float x = Input.GetAxis("Horizontal") * Time.smoothDeltaTime * speed;
     	
 		if (isJumping == true)
 		{
-			transform.position += jumpVec * Time.deltaTime;
-			jumpVec += (Vector3.down * Time.deltaTime);
+			//transform.position += jumpVec * Time.deltaTime;
+			//jumpVec += (Vector3.down * Time.deltaTime);
 		}
 		
 		else
 		{
 			
-			if (Input.GetKeyDown(KeyCode.Space))
+			//if (Input.GetKeyDown(KeyCode.Space))
 			{
-				isJumping = true;
-				jumpVec = Vector3.up * (jumpspeed * Time.smoothDeltaTime);
+				//isJumping = true;
+				//jumpVec = Vector3.up * (jumpspeed * Time.smoothDeltaTime);
 				//transform.Translate(Vector3.up * jumpspeed * Time.deltaTime, Space.World);
 				//rigidbody.AddForce(Vector3.up * jumpspeed);
 			}
 		}
-
+		
 		transform.Translate(x, 0, 0, Space.World); //move Player
 		
 		//move main camera
@@ -64,9 +64,9 @@ public class PlayerController : MonoBehaviour
 	}
 	
 	void OnCollisionEnter (Collision hit)
-{
-    isJumping = false;
-    // check message upon collition for functionality working of code.
-    Debug.Log ("I am colliding with something");
-}
+	{
+	    isJumping = false;
+	    // check message upon collision for functionality  of code.
+	    Debug.Log ("I am colliding with: " + hit.gameObject);
+	}
 }
