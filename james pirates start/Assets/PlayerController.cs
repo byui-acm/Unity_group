@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 	public float speed = 5;
-	public float rotationSpeed = 5;
+	public float rotationSpeed = 500;
 	public float jumpspeed = .25f;
 	public bool isJumping;
 	Vector3 jumpVec;
@@ -41,6 +41,18 @@ public class PlayerController : MonoBehaviour
 		
 		transform.Translate(x, 0, 0, Space.World); //move Player
 		
+		//rotate player
+		if (x < 0)
+		{
+			Debug.Log("Rotating left");
+			transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed);
+		}
+		else if (x > 0)
+		{
+			Debug.Log("Rotating right");
+			transform.Rotate(Vector3.up * Time.deltaTime * -rotationSpeed);
+		}
+		
 		//move main camera
 		//Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + 12.5f, transform.position.z - 2.5f);
 		
@@ -67,6 +79,6 @@ public class PlayerController : MonoBehaviour
 	{
 	    isJumping = false;
 	    // check message upon collision for functionality  of code.
-	    Debug.Log ("I am colliding with: " + hit.gameObject);
+	    Debug.Log("I am colliding with: " + hit.gameObject);
 	}
 }
