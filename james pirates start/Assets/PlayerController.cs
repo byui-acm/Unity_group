@@ -6,11 +6,20 @@ public class PlayerController : MonoBehaviour
 	GameObject leftPoint;
 	GameObject rightPoint;
 	
-	public float speed = 5;
+	public float walkSpeed = 5;
 	public float rotationSpeed = 50f;
-	public float jumpspeed = .25f;
-	public bool isJumping;
-	Vector3 jumpVec;
+	public float jumpSpeed = 400f;
+	private float RayCastLength = 1.0f;
+	
+	void FixedUpdate ()
+	{
+		//make player jump
+		if(Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, new Vector3(0,-1,0), RayCastLength))
+		{
+			Debug.Log("Jumping...");
+			rigidbody.AddForce(Vector3.up * jumpSpeed);
+		}
+	}
 	
 	// Use this for initialization
 	void Start () 
@@ -19,34 +28,13 @@ public class PlayerController : MonoBehaviour
 		rightPoint = new GameObject();
 		leftPoint.transform.position = new Vector3(1000, transform.position.y, transform.position.z);
 		rightPoint.transform.position = new Vector3(-1000, transform.position.y, transform.position.z);
-		
-		isJumping = false;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
 		// Moves player left and right.
-    	float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-    	
-		if (isJumping == true)
-		{
-			//transform.position += jumpVec * Time.deltaTime;
-			//jumpVec += (Vector3.down * Time.deltaTime);
-		}
-		
-		else
-		{
-			
-			//if (Input.GetKeyDown(KeyCode.Space))
-			{
-				//isJumping = true;
-				//jumpVec = Vector3.up * (jumpspeed * Time.smoothDeltaTime);
-				//transform.Translate(Vector3.up * jumpspeed * Time.deltaTime, Space.World);
-				//rigidbody.AddForce(Vector3.up * jumpspeed);
-			}
-		}
-		
+    	float x = Input.GetAxis("Horizontal") * Time.deltaTime * walkSpeed;
 		transform.Translate(x, 0, 0, Space.World); //move Player
 		
 		//rotate player
@@ -90,7 +78,6 @@ public class PlayerController : MonoBehaviour
 	
 	void OnCollisionEnter (Collision hit)
 	{
-	    isJumping = false;
 	    // check message upon collision for functionality  of code.
 	    Debug.Log("I am colliding with: " + hit.gameObject);
 	}
