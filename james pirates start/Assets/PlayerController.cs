@@ -3,8 +3,11 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+	GameObject leftPoint;
+	GameObject rightPoint;
+	
 	public float speed = 5;
-	public float rotationSpeed = 500;
+	public float rotationSpeed = 50f;
 	public float jumpspeed = .25f;
 	public bool isJumping;
 	Vector3 jumpVec;
@@ -12,6 +15,11 @@ public class PlayerController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		leftPoint = new GameObject();
+		rightPoint = new GameObject();
+		leftPoint.transform.position = new Vector3(1000, transform.position.y, transform.position.z);
+		rightPoint.transform.position = new Vector3(-1000, transform.position.y, transform.position.z);
+		
 		isJumping = false;
 	}
 	
@@ -19,7 +27,7 @@ public class PlayerController : MonoBehaviour
 	void Update ()
 	{
 		// Moves player left and right.
-    	float x = Input.GetAxis("Horizontal") * Time.smoothDeltaTime * speed;
+    	float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
     	
 		if (isJumping == true)
 		{
@@ -45,13 +53,18 @@ public class PlayerController : MonoBehaviour
 		if (x < 0)
 		{
 			Debug.Log("Rotating left");
-			transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed);
+			Vector3 targetPoint = leftPoint.transform.position;
+			Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position, Vector3.up);
+			transform.rotation = Quaternion.Slerp(targetRotation, transform.rotation, Time.deltaTime * 50f);
 		}
 		else if (x > 0)
 		{
 			Debug.Log("Rotating right");
-			transform.Rotate(Vector3.up * Time.deltaTime * -rotationSpeed);
+			Vector3 targetPoint = rightPoint.transform.position;
+			Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position, Vector3.up);
+			transform.rotation = Quaternion.Slerp(targetRotation, transform.rotation, Time.deltaTime * 50f);
 		}
+		
 		
 		//move main camera
 		//Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + 12.5f, transform.position.z - 2.5f);
