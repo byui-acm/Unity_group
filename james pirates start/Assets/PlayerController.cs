@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 	void Update ()
 	{
 		// Moves player left and right.
-    	float x = Input.GetAxis("Horizontal") * Time.deltaTime * walkSpeed;
+    	float x = Input.GetAxis("Horizontal") * Time.deltaTime * 10f;
 		transform.Translate(x, 0, 0, Space.World); //move Player
 		
 		//rotate player
@@ -43,14 +43,14 @@ public class PlayerController : MonoBehaviour
 			Debug.Log("Rotating left");
 			Vector3 targetPoint = leftPoint.transform.position;
 			Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position, Vector3.up);
-			transform.rotation = Quaternion.Slerp(targetRotation, transform.rotation, Time.deltaTime * 50f);
+			transform.rotation = Quaternion.Slerp(targetRotation, transform.rotation, 0.6f);
 		}
 		else if (x > 0)
 		{
 			Debug.Log("Rotating right");
 			Vector3 targetPoint = rightPoint.transform.position;
 			Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position, Vector3.up);
-			transform.rotation = Quaternion.Slerp(targetRotation, transform.rotation, Time.deltaTime * 50f);
+			transform.rotation = Quaternion.Slerp(targetRotation, transform.rotation, 0.6f);
 		}
 		
 		
